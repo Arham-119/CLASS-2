@@ -1,0 +1,5 @@
+print("Hi. My name is Arham, I am 11 years old. I'm going to the 6th grade.,")
+print("My favorite hobbies are playing basketball, batminton, and playing video games.")
+print(123456789)
+print("HELLO", 12456789)
+print("To sir Ahmed 67 IS NOT FUNNY", end="!")
