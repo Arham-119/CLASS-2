@@ -1,0 +1,4 @@
+print("Congratulations!")
+uppercase = input("Type uppercase to make congratulations uppercase: ")
+if uppercase == "uppercase":
+    print("CONGRATULATIONS!")
