@@ -1,0 +1,6 @@
+number = float(input("enter a number to get the square root"))
+if number >= 0:
+    square_root = number ** 0.5
+    print("The square root of", number, "is", square_root)
+else:
+    print("Error: Cannot compute the square root of a negative number.")
