@@ -1,0 +1,28 @@
+Weather = int(input("Put the amount of weather in Fahrenheit:"))
+
+if (Weather > 70 and Weather < 75):
+    print("The weather is warm but nice, you should wear a light jacket or sweater")
+
+elif (Weather > 76 and Weather < 90):
+    print("The weather is hot, you should wear light clothes and stay hydrated or go inside and turn on the AC")
+
+elif (Weather > 90):
+    print("The weather is very hot, you should stay inside and turn on the AC or you will get heat stroke")
+
+elif (Weather < 70 and Weather > 60):
+    print("The weather is cool, you should wear a light jacket or sweater")
+
+elif (Weather < 60 and Weather > 50):
+    print("The weather is cold, you should wear a jacket or sweater")
+
+elif (Weather < 50 and Weather > 32):
+    print("The weather is very cold, you should wear a heavy jacket or coat")
+
+elif (Weather < -10 and Weather > -20):
+    print("The weather is super cold, you should wear a heavy jacket or coat and stay inside")
+
+elif (Weather < -20):
+    print("The weather is extremely cold, you should stay inside and wear a heavy jacket or coat if you have to go outside")
+
+else:
+    print("I dont know what the weather is like, you should feel it for yourself and dress accordingly if its hot wear light clothes and if its cold wear a jacket or coat and if its too hot or cold... YOUR GONNA DIE!!!")
