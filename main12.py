@@ -21,10 +21,10 @@ a = 4
 b = 5
 
   # not is used here to reverse the result of comparing both conditions
-  if not ((a == 1) == (b == 5)):
+if not ((a == 1) == (b == 5)):
       print('hello')
 
-    a = int(input("Enter a number: "))
+a = int(input("Enter a number: "))
 
 # not is used here to check that the number is not even
 if not (a % 2 == 0):
