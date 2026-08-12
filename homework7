@@ -1,0 +1,8 @@
+
+Rajs_class = input(" Are you 10 to 20 years old? (Y/N): ").strip().upper()
+
+
+if Rajs_class == 'Y': 
+    print("You are allowed thank you, for joining my class")
+else:
+        print("You are not allowed maybe next time, thank you for your interest in my class")
