@@ -1,0 +1,48 @@
+"""Number system program.
+
+Explains the four common number systems and converts decimal numbers to binary.
+"""
+
+
+def show_number_systems():
+	print("\nThe four main number systems are:")
+	print("1. Decimal (base 10): digits 0-9")
+	print("2. Binary (base 2): digits 0-1")
+	print("3. Octal (base 8): digits 0-7")
+	print("4. Hexadecimal (base 16): digits 0-9 and A-F")
+
+
+def decimal_to_binary(number):
+	"""Return the binary representation of a non-negative decimal integer."""
+	if number == 0:
+		return "0"
+
+	binary = ""
+	while number > 0:
+		binary = str(number % 2) + binary
+		number //= 2
+	return binary
+
+
+def main():
+	print("NUMBER SYSTEMS")
+	show_number_systems()
+
+	while True:
+		choice = input("\nEnter a non-negative decimal integer to convert (or Q to quit): ").strip()
+		if choice.lower() == "q":
+			print("Goodbye!")
+			break
+
+		try:
+			decimal = int(choice)
+			if decimal < 0:
+				raise ValueError
+			print(f"Decimal: {decimal}")
+			print(f"Binary:  {decimal_to_binary(decimal)}")
+		except ValueError:
+			print("Please enter a valid non-negative whole number.")
+
+
+if __name__ == "__main__":
+	main()
