@@ -1,0 +1,4 @@
+number = input("Enter a number: ").strip()
+
+digits = sum(character.isdigit() for character in number)
+print("Number of digits:", digits)
