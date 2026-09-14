@@ -1,0 +1,6 @@
+bill = 2.50
+paid = 4
+
+due = paid - bill
+
+print("Due amount:", due)
