@@ -1,0 +1,57 @@
+import pygame
+import random
+
+pygame.init()
+
+# Window size and caption (check against the Story section)
+screen = pygame.display.set_mode((640, 480))
+pygame.display.set_caption("My first game screen")
+
+clock = pygame.time.Clock()
+
+BACKGROUND = (255, 255, 255)
+
+# Two rectangular sprites
+player = pygame.Rect(100, 200, 60, 60)
+other = pygame.Rect(400, 200, 60, 60)
+
+player_color = (30, 144, 255)   # blue
+other_color = (220, 20, 60)     # red
+
+# Custom event: fires whenever the colours should change
+CHANGE_COLOR = pygame.USEREVENT + 1
+pygame.time.set_timer(CHANGE_COLOR, 1000)   # every 1000 ms (1 second)
+
+def random_color():
+    return (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+
+speed = 5
+
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+        if event.type == CHANGE_COLOR:       # handle the custom event
+            player_color = random_color()
+            other_color = random_color()
+
+    # Arrow key controls for the player sprite
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_LEFT]:
+        player.x -= speed
+    if keys[pygame.K_RIGHT]:
+        player.x += speed
+    if keys[pygame.K_UP]:
+        player.y -= speed
+    if keys[pygame.K_DOWN]:
+        player.y += speed
+    player.clamp_ip(screen.get_rect())
+
+    screen.fill(BACKGROUND)
+    pygame.draw.rect(screen, player_color, player)
+    pygame.draw.rect(screen, other_color, other)
+    pygame.display.update()
+    clock.tick(60)
+
+pygame.quit()
