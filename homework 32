@@ -1,0 +1,37 @@
+import pygame
+
+pygame.init()
+
+# 1. Window size (640, 480)
+screen = pygame.display.set_mode((640, 480))
+
+# 2. Caption
+pygame.display.set_caption("My first game screen")
+
+# Colours
+BACKGROUND = (255, 255, 255)   # white; change to (0, 0, 0) if the task needs that exact value
+RECT_COLOR = (30, 144, 255)    # blue, any colour works
+TEXT_COLOR = (0, 0, 0)         # black so it shows on white; use (255, 255, 255) on a black background
+
+# 3. Rectangle (200 x 100), centred on the screen
+rect = pygame.Rect(0, 0, 200, 100)
+rect.center = (320, 240)
+
+# 4. Text
+font = pygame.font.Font(None, 48)
+text = font.render("Hello Pygame!", True, TEXT_COLOR)
+text_rect = text.get_rect(center=(320, 80))  # near the top, above the rectangle
+
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    # 5. Background first, then shapes and text on top
+    screen.fill(BACKGROUND)
+    pygame.draw.rect(screen, RECT_COLOR, rect)
+    screen.blit(text, text_rect)
+    pygame.display.update()
+
+pygame.quit()
