@@ -1,0 +1,73 @@
+import random
+import pygame
+
+pygame.init()
+
+WIDTH, HEIGHT = 800, 600
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Space Invader - Part 1")
+clock = pygame.time.Clock()
+font = pygame.font.SysFont(None, 36)
+
+
+class Player(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        self.image = pygame.Surface((50, 50))
+        self.image.fill((0, 200, 255))
+        self.rect = self.image.get_rect(center=(WIDTH // 2, HEIGHT - 60))
+        self.speed = 5
+
+    def update(self, keys):
+        if keys[pygame.K_LEFT]:
+            self.rect.x -= self.speed
+        if keys[pygame.K_RIGHT]:
+            self.rect.x += self.speed
+        if keys[pygame.K_UP]:
+            self.rect.y -= self.speed
+        if keys[pygame.K_DOWN]:
+            self.rect.y += self.speed
+        self.rect.clamp_ip(screen.get_rect())  # keep player on screen
+
+
+class Enemy(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+        self.image = pygame.Surface((40, 40))
+        self.image.fill((255, 70, 70))
+        self.rect = self.image.get_rect()
+        self.randomize_position()
+
+    def randomize_position(self):
+        self.rect.x = random.randint(0, WIDTH - self.rect.width)
+        self.rect.y = random.randint(0, HEIGHT - 150)
+
+
+player = Player()
+enemies = pygame.sprite.Group(*[Enemy() for _ in range(7)])
+all_sprites = pygame.sprite.Group(player, *enemies)
+
+score = 0
+running = True
+
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    player.update(pygame.key.get_pressed())
+
+    # Collision: +1 per enemy hit, then move that enemy so it
+    # doesn't keep scoring every frame
+    hit_list = pygame.sprite.spritecollide(player, enemies, False)
+    for enemy in hit_list:
+        score += 1
+        enemy.randomize_position()
+
+    screen.fill((10, 10, 40))
+    all_sprites.draw(screen)
+    screen.blit(font.render(f"Score: {score}", True, (255, 255, 255)), (10, 10))
+    pygame.display.flip()
+    clock.tick(60)
+
+pygame.quit()
